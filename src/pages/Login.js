@@ -36,6 +36,7 @@ const Login = () => {
                   placeholder="username"
                   className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
                   autoComplete="NA"
+                  required
                 />
                 <label
                   htmlFor="username"
@@ -52,6 +53,7 @@ const Login = () => {
                   placeholder="Password"
                   onChange={({ target }) => setPassword(target.value)}
                   className="peer peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  required
                 />
                 <label
                   htmlFor="password"
