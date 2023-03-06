@@ -23,6 +23,7 @@ const AllGames = () => {
   useEffect(() => {
     if (allGamesData.length === 0) {
       dispatch(fetchALlGamesAPI());
+      
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

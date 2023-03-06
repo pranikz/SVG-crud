@@ -35,6 +35,7 @@ const EditGame = () => {
       .unwrap()
       .then(() => {
         navigate("/allgames");
+        window.location.reload(true);
       });
   };
   return (
