@@ -3,7 +3,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // redux thunk middleware
 export const fetchALlGamesAPI = createAsyncThunk("games/getAPI", async () => {
-  const apiResponse = await axios.get("http://localhost:4000/games");
+  const apiResponse = await axios.get(
+    "https://json-server-ft1b.onrender.com/games"
+  );
   return apiResponse.data;
 });
 
@@ -11,7 +13,7 @@ export const addNewGameAPI = createAsyncThunk(
   "games/addGameAPI",
   async (payload) => {
     const apiResponse = await axios.post(
-      "http://localhost:4000/games",
+      "https://json-server-ft1b.onrender.com/games",
       payload
     );
     return apiResponse.data;
@@ -22,14 +24,16 @@ export const updateGameAPI = createAsyncThunk(
   "games/updateAPI",
   async (payload) => {
     const apiResponse = await axios.put(
-      `http://localhost:4000/games/${payload.id}`,
+      `https://json-server-ft1b.onrender.com/games/${payload.id}`,
       payload
     );
     return apiResponse.data;
   }
 );
 export const deleteGameAPI = createAsyncThunk("games/deleteAPI", async (id) => {
-  const apiResponse = await axios.delete(`http://localhost:4000/games/${id}`);
+  const apiResponse = await axios.delete(
+    `https://json-server-ft1b.onrender.com/games/${id}`
+  );
   return id;
 });
 

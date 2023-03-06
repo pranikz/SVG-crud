@@ -10,11 +10,11 @@ export default function Modal(props, { setOpenModal }) {
         ></div>
         <div className="flex items-center min-h-screen px-4 py-8">
           <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-            <div className="mt-3 sm:flex">
-              <div className="flex items-center justify-center flex-none w-12 h-12 mx-auto bg-red-100 rounded-full">
+            <div className="mt-3 sm:flex sm: justify-between">
+              <div className="flex items-center justify-center flex-none w-28 h-28 mx-auto bg-red-100 rounded-full">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 text-red-600"
+                  className="w-10 h-10 text-red-600"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -25,7 +25,7 @@ export default function Modal(props, { setOpenModal }) {
                   />
                 </svg>
               </div>
-              <div className="mt-2 text-center sm:ml-4 sm:text-left">
+              <div className="mt-2 text-center  sm:text-left">
                 <h4 className="text-lg font-medium text-gray-800">
                   Delete entry ?
                 </h4>
