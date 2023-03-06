@@ -23,7 +23,6 @@ const AllGames = () => {
   useEffect(() => {
     if (allGamesData.length === 0) {
       dispatch(fetchALlGamesAPI());
-      
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -41,6 +40,8 @@ const AllGames = () => {
       .then(() => {
         setShowModal(false);
         setItemIdToDelete(0);
+        navigate("/allgames");
+        window.location.reload(true);
       });
   };
 
