@@ -17,7 +17,9 @@ const AllGames = () => {
   let contentToRender = "";
 
   useEffect(() => {
-    dispatch(fetchALlGamesAPI());
+    if (allGamesData.length === 0) {
+      dispatch(fetchALlGamesAPI());
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   contentToRender =
@@ -40,7 +42,9 @@ const AllGames = () => {
                   className="bg-blue-200 text-black active:bg-blue-500 
       font-bold px-3 py-1.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                   type="button"
-                  onClick={()=>{navigate("/addgame")}}
+                  onClick={() => {
+                    navigate("/addgame");
+                  }}
                 >
                   {" "}
                   Add a New Game{" "}

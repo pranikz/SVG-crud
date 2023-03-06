@@ -62,6 +62,7 @@ const AddGame = () => {
             focus:ring-opacity-50
           "
                       placeholder="Enter Game Name"
+                      required
                     />
                   )}
                 />
@@ -89,6 +90,7 @@ const AddGame = () => {
               focus:ring-opacity-50
             "
                       placeholder="https://www.example.com"
+                      required
                     />
                   )}
                 />
@@ -116,6 +118,7 @@ const AddGame = () => {
               focus:ring-opacity-50
             "
                       placeholder=""
+                      required
                     />
                   )}
                 />
@@ -143,6 +146,7 @@ const AddGame = () => {
               focus:ring-opacity-50
             "
                       placeholder=""
+                      required
                     />
                   )}
                 />
