@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "../@components/Loader/Loader";
+import Modal from "../@components/Modal/Modal";
 import {
   getAllGames,
   getLoading,
   fetchALlGamesAPI,
+  deleteGameAPI,
 } from "../feature/games/gameslice";
 
 const AllGames = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [itemIdToDelete, setItemIdToDelete] = useState(0);
   const allGamesData = useSelector(getAllGames);
   const dataStatus = useSelector(getLoading);
   const dispatch = useDispatch();
@@ -22,6 +26,23 @@ const AllGames = () => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const openModalHandler = (id) => {
+    setShowModal(true);
+    setItemIdToDelete(id);
+  };
+  const closeModalHandler = () => {
+    setShowModal(false);
+    setItemIdToDelete(0);
+  };
+  const confirmDeleteHandler = () => {
+    dispatch(deleteGameAPI(itemIdToDelete))
+      .unwrap()
+      .then(() => {
+        setShowModal(false);
+        setItemIdToDelete(0);
+      });
+  };
+
   contentToRender =
     dataStatus === "pending" ? (
       <>
@@ -31,6 +52,14 @@ const AllGames = () => {
       </>
     ) : (
       <>
+        {showModal && (
+          <Modal
+            setOpenModal={setShowModal}
+            apiStatus={dataStatus}
+            closeModalHandler={closeModalHandler}
+            confirmDeleteHandler={confirmDeleteHandler}
+          />
+        )}
         <div className=" lg:my-2.5 mx-auto max-w-med px-4 sm:max-w-2xl lg:px-0">
           <div className="flex justify-between">
             <p className="text-base text-gray-300 sm:mt-5 sm:text-xl mb-10">
@@ -78,6 +107,28 @@ const AllGames = () => {
                           {new Date(data?.published_date).toLocaleDateString(
                             "en-GB"
                           )}
+                        </div>
+                        <div className="px-4 py-4 flex ">
+                          <button
+                            className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+                            onClick={() => {
+                              navigate(`/editgame/${data.id}`);
+                            }}
+                          >
+                            <span className="relative px-7 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                              Edit
+                            </span>
+                          </button>
+                          <button
+                            className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-600 to-red-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+                            onClick={() => {
+                              openModalHandler(data.id);
+                            }}
+                          >
+                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                              Delete
+                            </span>
+                          </button>
                         </div>
                       </div>
                     </div>

@@ -17,6 +17,22 @@ export const addNewGameAPI = createAsyncThunk(
     return apiResponse.data;
   }
 );
+
+export const updateGameAPI = createAsyncThunk(
+  "games/updateAPI",
+  async (payload) => {
+    const apiResponse = await axios.put(
+      `http://localhost:4000/games/${payload.id}`,
+      payload
+    );
+    return apiResponse.data;
+  }
+);
+export const deleteGameAPI = createAsyncThunk("games/deleteAPI", async (id) => {
+  const apiResponse = await axios.delete(`http://localhost:4000/games/${id}`);
+  return id;
+});
+
 const defaultState = { gameData: [], loading: "idle" };
 const gameslice = createSlice({
   name: "game",
@@ -37,10 +53,28 @@ const gameslice = createSlice({
       state.loading = "idle";
       state.gameData.unshift(action.payload);
     });
+    builder.addCase(updateGameAPI.pending, (state, action) => {
+      state.loading = "pending";
+    });
+    builder.addCase(updateGameAPI.fulfilled, (state, action) => {
+      state.loading = "idle";
+      state.gameData.filter((_) => _.id !== action.payload.id);
+      state.gameData.unshift(action.payload);
+    });
+    builder.addCase(deleteGameAPI.pending, (state, action) => {
+      state.loading = "pending";
+    });
+    builder.addCase(deleteGameAPI.fulfilled, (state, action) => {
+      state.loading = "idle";
+      state.gameData.filter((_) => _.id !== action.payload);
+    });
   },
 });
 
 export const { allGamesLoading, allGamesLoaded } = gameslice.actions;
 export const getAllGames = (state) => state.games.gameData;
 export const getLoading = (state) => state.games.loading;
+export const getGameById = (id) => {
+  return (state) => state.games.gameData.filter((_) => _.id === id)[0];
+};
 export default gameslice.reducer;

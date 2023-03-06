@@ -1,13 +1,6 @@
 {
   "games": [
     {
-      "id": 1,
-      "name": "Bottle Flip",
-      "url": "https://simpleiralgames.com",
-      "author": "Simple Viral Games",
-      "published_date": "2022-08-01 00:00:00"
-    },
-    {
       "id": 2,
       "name": "Bottle Flip 2",
       "url": "https://simpleiralgames.com",
@@ -15,18 +8,11 @@
       "published_date": "2022-08-04 00:00:00"
     },
     {
+      "id": 3,
       "name": "Valorant",
       "url": "https://playvalorant.com/en-gb/",
       "author": "Riot Games",
-      "published_date": "2023-03-08",
-      "id": 3
-    },
-    {
-      "name": "pratyush",
-      "url": "https://www.pranikz.dev",
-      "author": "pm",
-      "published_date": "2023-03-07",
-      "id": 4
+      "published_date": "2023-03-08"
     }
   ]
 }
